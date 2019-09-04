@@ -36,21 +36,22 @@ Note that the answer must be a substring, `pwke` is a subsequence and not a subs
 Build Requirements
 ------------------
 ```
-# Build Requirements here
+You will need to install node.js to compile and execute this code
+sudo apt-get install nodejs
 ```
 
 
 How to build
 ------------
 ```
-# instructions here
+node <filename.js>
 ```
 
 
 How to Run
 ----------
 ```
-# instructions here
+node <filename.js>
 ```
 
 
