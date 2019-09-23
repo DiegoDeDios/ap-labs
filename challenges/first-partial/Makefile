@@ -1,6 +1,6 @@
 SHELL    = /bin/bash
 
-# Classify Requirements
+
 GITHUB_USER       ?= demo
 CLASSIFY_ENDPOINT ?= http://classify.obedmr.com/
 EXECUTABLES        = curl jq
