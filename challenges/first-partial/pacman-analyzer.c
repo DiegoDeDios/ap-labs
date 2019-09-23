@@ -7,8 +7,6 @@
 #include "logger.h"
 #define REPORT_FILE "packages_report.txt"
 
-//NOTA A MI MISMO: RECUERDA CERRAR EL FILE DESCRIPTOR ANTES DE COMMITEAR EL ARCHIVO!!!!
-
 int main(int argc, char** argv)
 {
 

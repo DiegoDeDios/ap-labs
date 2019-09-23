@@ -1,7 +1,5 @@
 #ifndef sys/types.h
 #define sys/types.h
-
-
 struct File{
     int fileFD;
     off_t fileSize;

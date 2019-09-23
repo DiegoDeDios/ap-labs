@@ -16,16 +16,13 @@ type Directory struct{
 } 
 
 
-// scanDir stands for the directory scanning implementation
 func scanDir(myDir string) *Directory {
 	directoryLog:= Directory{myDir, 0, 0, 0, 0, 0}
 	var dirTraversal = func(directoryPath string, info os.FileInfo, err error) error {
-		// first thing to do, check error. and decide what to do about it
 		if err != nil {
-			fmt.Printf("error %v at a path 「%q」\n", err, directoryPath)
+			fmt.Printf("error %v at a path %q\n", err, directoryPath)
 			return err
 		}
-		// find out if it's a dir or file, if file, print info
 		if info.IsDir() {
 			directoryLog.dirs++;
 		} 
