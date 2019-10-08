@@ -1,39 +1,39 @@
 #include <stdio.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-/* filecopy:  copy file ifp to file ofp */
-void filecopy(FILE *ifp, FILE *ofp)
-{
-    int c;
-
-    while ((c = getc(ifp)) != EOF)
-        putc(c, ofp);
-
+int openFile(char* filename){
+    int fd = open(filename, O_RDONLY);
+    return fd;
 }
 
-/* cat:  concatenate files, version 2 */
+off_t getSize(int fd){
+    off_t curOffset = lseek(fd, (size_t)0, SEEK_CUR);
+    off_t size = lseek(fd, (size_t)0, SEEK_END); 
+    lseek(fd, curOffset, SEEK_SET);
+    return size;
+}
+
 int main(int argc, char *argv[])
 {
-    FILE *fp;
-    void filecopy(FILE *, FILE *);
-    char *prog = argv[0];   /* program name for errors */
-
-    if (argc == 1)  /* no args; copy standard input */
-        filecopy(stdin, stdout);
-    else
-        while (--argc > 0)
-            if ((fp = fopen(*++argv, "r")) == NULL) {
-                fprintf(stderr, "%s: can′t open %s\n",
-			prog, *argv);
-                return 1;
-            } else {
-                filecopy(fp, stdout);
-                fclose(fp);
-            }
-
-    if (ferror(stdout)) {
-        fprintf(stderr, "%s: error writing stdout\n", prog);
-        return 2;
+    if(argc < 2){
+        printf("You must specify a file to print con the stdout\n");
+        return -1;
     }
-
+    int fd = openFile(argv[1]);
+    if(fd == -1){
+        printf("Invalid file\n");
+        return -1;
+    }
+    off_t size = getSize(fd);
+    char* fileBuffer = (char*)malloc(sizeof(char)*size);
+    read(fd,fileBuffer,size);
+    write(1,fileBuffer,size);
+    close(fd);
+    free(fileBuffer);
     return 0;
 }
+ 
