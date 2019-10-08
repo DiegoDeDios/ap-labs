@@ -1,3 +1,9 @@
+How to Run
+=======================
+gcc -c testLogger.c -o testLogger.o
+gcc -c logger.c -o logger.o
+gcc logger.o testLogger.o -o main.o
+
 Lab - Logger Library
 ====================
 
@@ -32,3 +38,4 @@ How to submit your work
 GITHUB_USER=<your_github_user>  make submit
 ```
 More details at: [Classify API](../../classify.md)
+
