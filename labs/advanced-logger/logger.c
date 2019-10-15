@@ -14,11 +14,11 @@ void textcolor(int attr, int fg, int bg)
 
 int initLogger(char *logType){
     if(strcmp(logType,"stdout")){
-        logTp = 0;
+        logTp = 1;
         return logTp;
     }
     if(strcmp(logType,"syslog")){
-        logTp = 1;
+        logTp = 0;
         return logTp;
     }
     return -1;
