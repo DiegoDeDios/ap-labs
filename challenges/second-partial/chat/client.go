@@ -7,6 +7,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -15,14 +17,30 @@ import (
 
 //!+
 func main() {
-	conn, err := net.Dial("tcp", "localhost:8000")
+	var username string
+	var host string
+
+	flag.StringVar(&username, "user", "placeholder", "username")
+	flag.StringVar(&host, "server", "localhost:9000", "server")
+
+	flag.Parse()
+
+	if username == "placeholder" {
+		log.Fatal("Register a username to enter\n")
+		os.Exit(-1);
+	}
+
+	conn, err := net.Dial("tcp", host)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Fprintf(conn, username+"\n")
+
 	done := make(chan struct{})
 	go func() {
 		io.Copy(os.Stdout, conn) // NOTE: ignoring errors
-		log.Println("done")
+		log.Println("Connection closed from server")
 		done <- struct{}{} // signal the main goroutine
 	}()
 	mustCopy(conn, os.Stdin)
