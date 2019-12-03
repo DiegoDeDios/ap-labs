@@ -20,6 +20,8 @@ $ go build city-traffic-sim.go
 $ ./city-traffic-sim.go -width <size of the map> -cars <number-of-cars> -semaphores <number-of-semaphores>
 ```
 ### Notes
-width must be multiple of 7 + 2. For example: 9, 16, 30, 44, 51, ...
-Cars must be less than the width
+
+-width must be multiple of 7 + 2. For example: 9, 16, 30, 44, 51, ...
+
+-Cars must be less than the width
 
