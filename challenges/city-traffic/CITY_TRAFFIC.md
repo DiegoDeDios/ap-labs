@@ -21,7 +21,7 @@ $ ./city-traffic-sim.go -width <size of the map> -cars <number-of-cars> -semapho
 ```
 ### Notes
 
--width must be multiple of 7 + 2. For example: 9, 16, 30, 44, 51, ...
+- width must be multiple of 7 + 2. For example: 9, 16, 30, 44, 51, ...
 
--Cars must be less than the width
+- Cars must be less than the width
 
